@@ -9,6 +9,7 @@ namespace dotnet_rpg
        public AutoMapperProfile()
        {
             CreateMap<Character, GetCharacterDTO>();
+            CreateMap<AddCharacterDTO, Character>();
             CreateMap<UpdateCharacterDTO, Character>();
        }
     }
