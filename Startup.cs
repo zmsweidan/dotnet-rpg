@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
+using Microsoft.AspNetCore.Http;
 
 namespace dotnet_rpg
 {
@@ -37,7 +38,7 @@ namespace dotnet_rpg
             );
             services.AddControllers();
             services.AddSwaggerGen(c =>
-            {
+            {   
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnet_rpg", Version = "v1" });
                 c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
@@ -63,6 +64,7 @@ namespace dotnet_rpg
                         ValidateAudience = false
                     };
                 });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
